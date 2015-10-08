@@ -9,7 +9,13 @@ import Unsafe.Coerce
 import Data.List.Split
 import Text.Printf
 
-myFilter (r:g:b:[]) = r `div` 2 + g `div` (if b /= 0 then b else 1)
+myFilter :: Integral a => [a] -> a
+myFilter (r:g:b:[]) = abs $
+    if g `mod` 2 == 0
+    then flip mod 50 $ floor $ 100 * logBase (fromIntegral $ 255 `div` (b + 1)) (fromIntegral $ g + b)
+    else flip mod 100 $ floor $ 100 * logBase (fromIntegral $ 255 `div` (r + 1)) (fromIntegral $ b + r)
+  where
+    maxVal = max r $ max g b
 
 main = do
     args <- getArgs

@@ -1,3 +1,4 @@
+{-# LANGUAGE FlexibleContexts #-}
 import Codec.Picture
 import Codec.Picture.Types (promoteImage)
 import qualified Data.Vector.Storable as V
